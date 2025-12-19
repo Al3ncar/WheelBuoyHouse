@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Google Sans", sans-serif;
+}
+
+.wheel-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+
+  background-image: url("./assets/fest-back.png");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .wheel-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .wheel-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+
+  // Seta cinza na lateral direita
+  .side-indicator {
+    position: absolute;
+    right: initial;
+    top: initial;
+    bottom: 98%;
+    // transform: translateY(-50%);
+
+    width: 0;
+    height: 0;
+    border-top: 30px solid #573528;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+  // Logo Central
+  .center-logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      cursor: pointer;
+      border-radius: 50%;
+      object-fit: contain;
+      width: 80%;
+    }
+  }
+
+  .spin-btn {
+    margin-top: 40px;
+    background-color: #4b397d;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 0 #35285a;
+
+    &:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #35285a;
+    }
+  }
+}
+
+.spin-the-wheel-container {
+  img {
+    display: none;
+  }
+}
+
+// #wheel {
+//   animation: rotateRolet linear infinite 20s;
+// }
+
+iframe {
+  opacity: 1;
+  z-index: -999;
+}
+
+@keyframes rotateRolet {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
