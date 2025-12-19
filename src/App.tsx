@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import SpinWheel, { SpinWheelHandle, Sector } from "ts-spin-wheel";
-import IBoiaHouse from "./assets/logo_casa.jpg";
+import { useEffect, useRef, useState } from "react";
+import SpinWheel from "ts-spin-wheel";
+import type { SpinWheelHandle } from "ts-spin-wheel";
+
 import { wheelData } from "./data/data";
 import { Modal } from "./components/modal";
 import Confetti from "react-confetti";
 import Aud from "./assets/audio.mp3";
+import IBoiaHouse from "./assets/logo_casa.jpg";
 import "./style.scss";
 // ... (mantenha os imports e o wheelData)
 
@@ -41,14 +43,8 @@ const App = () => {
     };
   }, []);
 
-  const removedPerson = (label, onClose) => {
-    const newDataWheel = dataWheel.slice();
-
-    const removedItem = newDataWheel.filter((item) => {
-      return item.label !== label ? item : null;
-    });
-
-    setDataWheel(removedItem);
+  const removePersonByLabel = (label: string, onClose: () => void) => {
+    setDataWheel((prev) => prev.filter((item) => item.label !== label));
     onClose();
   };
 
@@ -77,7 +73,6 @@ const App = () => {
             size={800}
             onSpinEnd={() => setParty(true)}
             labelFontSize={24}
-            labelOrientation="vertical"
             spinButtonText=""
             enableSound={false}
             spinButtonStyles={{ display: "none" }}
@@ -88,7 +83,7 @@ const App = () => {
                   setParty(false);
                   onClose();
                 }}
-                onRemoved={removedPerson}
+                onRemoved={removePersonByLabel}
               />
             )}
           />
